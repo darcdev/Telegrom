@@ -1,0 +1,19 @@
+{
+    "name": "api-chat-project",
+    "version": "1.0.0",
+    "description": "Chat like Telegram but better",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "chat",
+        "telegram",
+        "server"
+    ],
+    "author": "Diego Andres Rojas",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
