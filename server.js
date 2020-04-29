@@ -1,28 +1,18 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const router = express.Router();
 const app = express();
 
-const response = require('./network/response');
+const bodyParser = require('body-parser');
+
+const db = require('./db');
+const router = require('./network/routes');
+
+db('mongodb+srv://db_user:O5LEiWHVbspbVJpN@cluster0-bqwcb.mongodb.net/test?retryWrites=true&w=majority');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(router);
 
-router.get('/message', (req, res) => {
-    console.log(req.headers);
-    res.header({
-        "custom-header": "nuestro valor por defecto"
-    })
-    response.success(req, res, "lista de mensajes");
-})
-router.post('/message', (req, res) => {
-    console.log(req.query);
-    console.log(req.body);
-    if (req.query.error == 'ok') {
-        response.error(req, res, "Error al crear desde el server");
-    }
-    response.success(req, res, "creado correctamente");
+router(app);
 
-})
+app.use('/app', express.static('public'));
 app.listen(3000);
+console.log('La aplicación esta escuchando en http://localhost:3000');
