@@ -8,7 +8,6 @@ const upload = multer({
     dest: 'public/files/',
 })
 
-
 router.get('/', (req, res) => {
     const filterMessages = req.query.chat || null;
     controller.getMessages(filterMessages)
